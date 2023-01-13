@@ -1,0 +1,42 @@
+<t-cell-group class="person-info">
+	<t-cell title="头像" center="{{true}}" data-type="avatarUrl" arrow t-class-left="order-group__left">
+		<t-button shape="circle" slot="note" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+			<t-image src="{{personInfo.avatarUrl?personInfo.avatarUrl:defaultAvatarUrl}}" t-class="avatarUrl"
+				mode="aspectFill" />
+		</t-button>
+	</t-cell>
+	<t-cell title="昵称" arrow note="{{personInfo.nickName?personInfo.nickName:'去设置昵称'}}" data-type="name"
+		bind:click="onClickCell" t-class="t-cell-class" t-class-left="order-group__left" t-class-note="t-class-note" />
+	<!-- <t-cell
+	  title="性别"
+	  arrow
+	  note="{{genderMap[personInfo.gender]}}"
+	  data-type="gender"
+	  bind:click="onClickCell"
+	  t-class="t-cell-class"
+	  t-class-left="order-group__left"
+	/> -->
+	<t-cell title="手机号" arrow data-type="phoneNumber" t-class="t-cell-class" t-class-left="order-group__left">
+		<t-button wx:if="{{  !personInfo.phoneNumber }}" slot="note" size="large" variant="text" open-type="getPhoneNumber"
+			bind:getphonenumber="getphonenumber" t-class="t_btn">点击绑定</t-button>
+		<t-button wx:else="{{  !!personInfo.phoneNumber }}" slot="note" size="large" variant="text"
+			open-type="getPhoneNumber" bind:getphonenumber="getphonenumber" t-class="t_btn">{{
+			personInfo.phoneNumber }}</t-button>
+	</t-cell>
+
+</t-cell-group>
+<!-- <view class="person-info__wrapper">
+	<view class="person-info__btn" bind:tap="openUnbindConfirm">
+		切换账号登录
+	</view>
+</view> -->
+<!-- <t-select-picker
+  show="{{typeVisible}}"
+  picker-options="{{pickerOptions}}"
+  title="选择性别"
+  value="{{personInfo.gender}}"
+  bind:confirm="onConfirm"
+  bind:close="onClose"
+/> -->
+<t-toast id="t-toast" />
+<t-message id="t-message" />

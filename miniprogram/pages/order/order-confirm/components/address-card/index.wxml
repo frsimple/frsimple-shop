@@ -1,0 +1,24 @@
+<view class="address-card wr-class">
+	<t-cell wx:if="{{addressData}}" bindtap="onAddressTap" hover>
+		<view class="order-address" slot="title">
+			<t-icon name="location" color="#333333" size="40rpx" />
+			<view class="address-content">
+				<view class="title">
+					<view class="address-tag" wx:if="{{ addressData.tab }}">
+						{{addressData.tab == '1' ? '公司':'家'}}
+					</view>
+					{{addressData.rarea.provinceName}} {{addressData.rarea.cityName}} {{addressData.rarea.districtName}}
+				</view>
+				<view class="detail">{{addressData.raddress}}</view>
+				<view class="info">
+					{{addressData.rname}} {{addressData.rphone}}
+				</view>
+			</view>
+			<t-icon class="address__right" name="chevron-right" color="#BBBBBB" size="40rpx" />
+		</view>
+	</t-cell>
+	<t-cell wx:else bindtap="onAddTap" title="选择收货地址" hover>
+		<t-icon name="add-circle" slot="left-icon" size="40rpx" />
+	</t-cell>
+	<view class="top-line" />
+</view>

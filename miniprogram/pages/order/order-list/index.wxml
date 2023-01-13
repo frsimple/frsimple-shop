@@ -1,0 +1,82 @@
+<view class="page-container">
+	<view class="tab-bar">
+		<view class="tab-bar__placeholder" />
+		<t-tabs t-class="tab-bar__inner" t-class-active="tab-bar__active" t-class-track="t-tabs-track"
+			bind:change="onTabChange" space-evenly="{{false}}" value="{{status}}"
+			style="position: fixed;top: 0;left: 0;z-index: 100;">
+			<t-tab-panel wx:for="{{tabs}}" wx:for-index="index" wx:for-item="item" wx:key="index" label="{{item.text}}"
+				value="{{item.key}}" />
+		</t-tabs>
+	</view>
+	<t-pull-down-refresh value="{{pullDownRefreshing}}" loadingTexts="{{['下拉刷新', '松手刷新', '正在刷新', '刷新完成']}}"
+		id="pull-down-refresh" normal-bar-height="{{200}}" max-bar-height="{{272}}" refreshTimeout="{{3000}}"
+		background="#f5f5f5" use-loading-slot loading-size="60rpx" bindrefresh="onPullDownRefresh_"
+		bind:scrolltolower="onReachBottom1" t-class-indicator="t-class-indicator">
+		<order-card wx:for="{{orderList}}" wx:key="id" wx:for-item="order" wx:for-index="oIndex" order="{{order}}"
+			defaultShowNum="{{3}}" data-order="{{order}}" bindcardtap="onOrderCardTap" useLogoSlot>
+			<view slot="top-left" class="order-number">
+				<text decode>订单号&nbsp;</text>
+				{{order.orderNo}}
+			</view>
+			<specs-goods-card wx:for="{{order.goodsList}}" wx:key="id" wx:for-item="goods" wx:for-index="gIndex"
+				data="{{goods}}" no-top-line="{{gIndex === 0}}" />
+			<view slot="more">
+				<view class="price-total">
+					<text>总价</text>
+					<price fill price="{{order.totalAmount + ''}}" />
+					<text>，包含运费</text>
+					<price fill price="{{order.freightFee + ''}}" />
+					<text decode>&nbsp;</text>
+					<text class="bold-price" decode="{{true}}">实付&nbsp;</text>
+					<price fill class="real-pay" price="{{order.amount + ''}}" decimalSmaller />
+				</view>
+				<!-- 订单按钮栏 -->
+				<order-button-bar order="{{order}}" bindrefresh="onRefresh" bind:showtoast="onShowToast"
+					bind:closepaytoast="onClosePayToast" bind:showgoodpopup="onShowGoodPopup" bind:showpaytoast="onShowPayToast"
+					data-order="{{order}}" />
+			</view>
+		</order-card>
+		<!-- 列表加载中/已全部加载 -->
+		<load-more wx:if="{{!pullDownRefreshing}}" list-is-empty="{{!pullDownRefreshing &&orderList.length == 0}}"
+			status="{{listLoading}}" bindretry="onReTryLoad">
+			<!-- 空态 -->
+			<view slot="empty" class="empty-wrapper">
+				<t-empty t-class="t-empty-text" image="{{emptyImg}}" description="暂无相关订单" />
+			</view>
+		</load-more>
+	</t-pull-down-refresh>
+</view>
+<t-toast id="t-toast" />
+<t-toast id="t-toast-pay" />
+<t-dialog id="t-dialog" />
+<t-popup visible="{{isShowPopup}}" placement="bottom">
+	<view slot="content" class="block">
+		<view class="header">
+			<view class="title">请选择商品</view>
+		</view>
+		<t-checkbox-group value="{{goodChecks}}" bind:change="onChange">
+			<view wx:for="{{readCheckGoods}}" class="card {{ item.checked ? 'card--active' : ''}}">
+				<t-icon wx:if="{{item.checked}}" name="check" class="card__icon" />
+				<t-checkbox value="{{index}}" icon="none" borderless>
+					<view slot="content">
+						<t-cell t-class="t-cell" bordered="{{ false}}" description="{{ item.specs?item.specs:''}}" align="top"
+							image="{{ item.thumb}}">
+							<view slot="title" class="cell-title">
+								{{ item.title}}
+							</view>
+							<view slot="note">
+								<t-stepper defaultValue="{{ item.rnum }}" value="{{ item.rnum }}" max="{{ item.num }}" min="1"
+									theme="filled" data-index="{{ index }}" bind:change="handleChangeNum" />
+							</view>
+						</t-cell>
+					</view>
+				</t-checkbox>
+			</view>
+		</t-checkbox-group>
+	</view>
+	<view class="bottom">
+		<t-button theme="light" size="medium" shape="round" block bind:tap="handlePopupBtn">关闭</t-button>
+		<t-button theme="primary" size="medium" shape="round" block bind:tap="handlePopupNextBtn"
+			disabled="{{ !isCanSubmit}}">下一步</t-button>
+	</view>
+</t-popup>

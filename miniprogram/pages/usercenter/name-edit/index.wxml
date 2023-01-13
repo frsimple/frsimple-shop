@@ -1,0 +1,14 @@
+<view class="name-edit">
+	<form catchsubmit="onSubmit">
+		<t-input placeholder="请输入文字" label="昵称" value="{{ nameValue }}" name="nickname" clearable bind:blur="changeNick"
+			bind:clear="clearContent" type="nickname" />
+		<view class="name-edit__input--desc">
+			最多可输入15个字
+		</view>
+		<view class="name-edit__wrapper">
+			<t-button t-class="name-edit__btn" type="submit" loading="{{ saveBtn.load }}">{{
+				saveBtn.text }}</t-button>
+		</view>
+	</form>
+</view>
+<t-message id="t-message" />

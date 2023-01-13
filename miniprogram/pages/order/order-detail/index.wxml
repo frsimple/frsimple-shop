@@ -1,0 +1,141 @@
+<!-- <t-pull-down-refresh id="t-pull-down-refresh" bindrefresh="onPullDownRefresh_" t-class-indicator="t-class-indicator"> -->
+<!-- 页面内容 -->
+<view class="order-detail">
+	<view class="header">
+		<view class="order-detail__header">
+			<view class="title">{{_order.statusDesc}}</view>
+			<view class="desc">
+				<!-- <block wx:if="{{ order.status === '00' }}">
+						<block wx:if="{{ order.groupInfoVo.residueTime > 0 }}">
+							拼团剩余
+							<t-count-down time="{{order.groupInfoVo.residueTime}}" format="HH小时mm分ss秒" t-class="count-down"
+								bindfinish="onCountDownFinish" />
+							<view>过时自动取消</view>
+						</block>
+					</block> -->
+				<!-- <block wx:elif="{{countDownTime === null}}">{{order.orderSatusRemark || ''}}</block> -->
+				<block wx:if="{{order.isrefund  == '2' && order.status === '-1'}}">
+					退款成功
+				</block>
+				<block wx:if="{{countDownTime > 0 && order.status === '00'}}">
+					剩
+					<t-count-down time="{{countDownTime}}" format="HH小时mm分ss秒" t-class="count-down"
+						bindfinish="onCountDownFinish" />
+					支付，过时订单将会取消
+				</block>
+				<!-- <block wx:else>超时未支付</block> -->
+			</view>
+		</view>
+
+		<!-- 物流 -->
+		<view class="order-logistics" bindtap="onDeliveryClick">
+			<t-icon name="deliver" size="40rpx" class="logistics-icon" prefix="wr" />
+			<view class="logistics-content">
+				<view>{{order.orderDetailsList[0].remark}}</view>
+				<view class="logistics-time">{{order.orderDetailsList[0].createTime}}</view>
+			</view>
+			<t-icon class="logistics-back" name="arrow_forward" size="36rpx" prefix="wr" />
+		</view>
+		<view class="border-bottom" />
+		<!-- 收货地址 -->
+		<view class="order-logistics">
+			<t-icon name="location" size="40rpx" class="logistics-icon" prefix="wr" />
+			<view class="logistics-content">
+				<view>{{order.takeInfo.rname + ' '}}{{order.takeInfo.rphone}}</view>
+				<view class="logistics-time">{{_order.receiverAddress}}</view>
+			</view>
+			<view wx:if="{{addressEditable}}" class="edit-text" bindtap="onEditAddressTap">
+				修改
+			</view>
+		</view>
+	</view>
+	<!-- 店铺及商品 -->
+	<order-card order="{{_order}}" use-top-right-slot>
+		<order-goods-card wx:for="{{_order.goodsList}}" wx:key="id" wx:for-item="goods" wx:for-index="gIndex"
+			goods="{{goods}}" no-top-line="{{gIndex === 0}}" bindtap="onGoodsCardTap" data-index="{{gIndex}}"
+			data-goods="{{goods}}">
+			<order-button-bar slot="append-card" class="goods-button-bar" order="{{_order}}" bindrefresh="onRefresh"
+				goodsIndex="{{gIndex}}" />
+		</order-goods-card>
+		<view class="pay-detail">
+			<view class="pay-item">
+				<text>商品总额</text>
+				<price fill decimalSmaller wr-class="pay-item__right font-bold"
+					price="{{_order.totalAmount -_order.freightFee  || '0'}}" />
+			</view>
+			<view class="pay-item">
+				<text>运费</text>
+				<view class="pay-item__right font-bold">
+					<block wx:if="{{_order.freightFee && _order.freightFee != 0}}">
+						+
+						<price fill decimalSmaller price="{{_order.freightFee}}" />
+					</block>
+					<text wx:else>免运费</text>
+				</view>
+			</view>
+			<!-- <view class="pay-item">
+					<text>活动优惠</text>
+					<view class="pay-item__right primary font-bold">
+						-
+						<price fill price="{{order.discountAmount || 0}}" />
+					</view>
+				</view> -->
+			<!-- <view class="pay-item">
+					<text>优惠券</text>
+					<view class="pay-item__right" catchtap="onOpenCoupons">
+						<block wx:if="{{order.couponAmount}}">
+							-
+							<price fill decimalSmaller price="{{order.couponAmount}}" />
+						</block>
+						<text wx:else>无可用</text>
+						<t-icon name="chevron-right" size="32rpx" color="#BBBBBB" />
+					</view>
+				</view> -->
+			<view class="pay-item">
+				<text>{{isPaid ? '实付' : '应付'}}</text>
+				<price fill decimalSmaller wr-class="pay-item__right font-bold primary max-size"
+					price="{{_order.totalAmount || '0'}}" />
+			</view>
+		</view>
+	</order-card>
+	<view class="pay-detail padding-inline">
+		<view class="pay-item">
+			<text>订单编号</text>
+			<view class="pay-item__right" bindtap="onOrderNumCopy">
+				<text class="order-no">{{order.orderNo}}</text>
+				<view class="pay-item__right__copy">复制</view>
+			</view>
+		</view>
+		<view class="pay-item">
+			<text>下单时间</text>
+			<view class="pay-item__right">
+				<text class="order-no normal-color">{{formatCreateTime}}</text>
+			</view>
+		</view>
+		<view class="border-bottom border-bottom-margin" />
+		<!-- <view class="pay-item">
+				<text>发票</text>
+				<view class="pay-item__right" bindtap="onOrderInvoiceView">
+					<text class="order-no normal-color">{{invoiceType}}</text>
+					<view class="pay-item__right__copy">查看</view>
+				</view>
+			</view> -->
+		<view class="pay-item">
+			<text>备注</text>
+			<view class="pay-item__right">
+				<text class="order-no normal-color">{{order.remark || '-'}}</text>
+			</view>
+		</view>
+		<!-- <view class="border-bottom border-bottom-margin" />
+		<view class="pay-service" catch:tap="clickService">
+			<t-icon name="service" size="40rpx" />
+			<text decode="{{true}}">&nbsp;联系客服</text>
+		</view> -->
+	</view>
+</view>
+<!-- </t-pull-down-refresh> -->
+<view wx:if="{{_order.buttons.length > 0}}" class="bottom-bar">
+	<order-button-bar order="{{_order}}" bindrefresh="onRefresh" isBtnMax />
+</view>
+<t-toast id="t-toast" />
+<t-dialog id="t-dialog" t-class-confirm="add-notes__confirm" />

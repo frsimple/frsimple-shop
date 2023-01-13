@@ -1,0 +1,48 @@
+<view id="{{independentID}}" class="wr-goods-card card-class {{ layout }} {{ centered ? 'center' : ''}}"
+	data-goods="{{ goods }}" hidden="{{hiddenInData}}">
+	<view class="wr-goods-card__main">
+		<view class="wr-goods-card__thumb thumb-class" bind:tap="clickThumbHandle">
+			<!-- data-src 是方便加购动画读取图片用的 -->
+			<t-image t-class="wr-goods-card__thumb-com" src="{{ goods.primaryImage }}" mode="{{ thumbMode }}"
+				lazy-load="{{ lazyLoad }}" />
+			<slot name="thumb-cover" />
+		</view>
+		<view class="wr-goods-card__body">
+			<view class="wr-goods-card__long_content">
+				<view class="wr-goods-card__title title-class" bind:tap="clickHandle">
+					<slot name="before-title" />
+					{{ goods.goodsName }}
+				</view>
+				<slot name="after-title" />
+				<!-- <view wx:if="{{ goods.desc && !goods.hideKey.desc }}" class="wr-goods-card__desc desc-class">{{ goods.desc }}
+				</view> -->
+				<slot name="after-desc" />
+				<view wx:if="{{ goods.selectedSkuInfo }}" class="wr-goods-card__specs__desc specs-class">
+					<view class="wr-goods-card__specs__desc-text">{{ goods.selectedSkuInfo.rule }}</view>
+					<!-- <t-icon name="chevron-down" size="32rpx" color="#999999" /> -->
+				</view>
+				<!-- <view class="goods_tips" wx:if="{{goods.stockQuantity !== 0 && goods.quantity >= goods.stockQuantity}}">库存不足
+				</view> -->
+			</view>
+			<view class="wr-goods-card__short_content">
+				<block>
+					<view wx:if="{{ pricePrefix }}" class="wr-goods-card__price__prefix price-prefix-class">{{ pricePrefix }}
+					</view>
+					<slot name="price-prefix" />
+					<view class="wr-goods-card__price">
+						<price wr-class="price-class" symbol="{{currency}}" price="{{goods.price * goods.buyNum}}"
+							fill="{{priceFill}}" decimalSmaller />
+					</view>
+					<slot name="origin-price" />
+					<!-- <view wx:if="{{goods.buyNum}}" class="wr-goods-card__num num-class">
+						<text class="wr-goods-card__num__prefix">x </text>
+						{{ goods.buyNum }}
+					</view> -->
+				</block>
+			</view>
+			<slot name="append-body" />
+		</view>
+		<slot name="footer" />
+	</view>
+	<slot name="append-card" />
+</view>

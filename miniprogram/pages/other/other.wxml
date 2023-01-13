@@ -1,0 +1,2 @@
+<!--pages/other/other.wxml-->
+<web-view src="{{ html }}" bindmessage=""></web-view>

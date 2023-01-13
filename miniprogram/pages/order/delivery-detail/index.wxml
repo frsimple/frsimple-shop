@@ -1,0 +1,50 @@
+<wxs module="isUrl">
+	var isUrl = function(item) {
+	return item.indexOf('http') > -1;
+	}
+	module.exports = {
+	isUrl: isUrl,
+	}
+</wxs>
+
+<view class="page-section cells" wx:if="{{logisticsData.express}}">
+	<t-cell-group>
+		<t-cell title="快递单号" t-class-title="wr-cell__title" t-class-note="wr-cell__value" t-class-left="order-group__left"
+			bordered="{{false}}">
+			<text slot="note" class="logistics-no">{{logisticsData.express.expressNo}}</text>
+			<view slot="right-icon" class="text-btn" hover-class="text-btn--active" bindtap="onLogisticsNoCopy">复制
+			</view>
+		</t-cell>
+		<t-cell title="物流公司" t-class-title="wr-cell__title" t-class-note="wr-cell__value" t-class-left="order-group__left"
+			bordered="{{false}}" note="{{ logisticsData.expressMap[logisticsData.express.company] }}">
+			<!-- <view
+			  slot="right-icon"
+			  class="text-btn"
+			  hover-class="text-btn--active"
+			  bindtap="onCall"
+			  wx:if="{{logisticsData.phoneNumber}}"
+			>
+				拨打
+			</view> -->
+		</t-cell>
+	</t-cell-group>
+</view>
+<view class="page-section cell-steps">
+	<!-- <t-steps class="page-section__steps" t-class="steps" layout="vertical" current="{{active}}">
+		<t-step class="steps" t-class-title="step-title" wx:for="{{logisticsData.nodes}}" wx:for-item="item"
+			wx:for-index="index" wx:key="index"> 
+			<block>
+				<t-icon slot="icon" size="32rpx" prefix="wr" s />
+			</block>
+			<view slot="content">
+				<view class="step-desc">{{item.remark}}</view>
+				<view class="step-date">{{item.createTime}}</view>
+			</view>
+		</t-step>
+	</t-steps> -->
+	<t-steps class="page-section__steps" t-class="steps" layout="vertical" theme="dot" current="{{active}}"
+		bind:change="onThirdChange">
+		<t-step-item wx:for="{{logisticsData.nodes}}" wx:key="index" wx:for-item="item" title="{{ item.remark }}"
+			content="{{ item.createTime }}" />
+	</t-steps>
+</view>

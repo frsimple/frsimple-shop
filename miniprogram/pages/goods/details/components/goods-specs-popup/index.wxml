@@ -1,0 +1,88 @@
+<t-popup visible="{{show}}" placement="bottom" bind:visible-change="handlePopupHide">
+	<view class="popup-container">
+		<view class="popup-close" bindtap="handlePopupHide">
+			<t-icon name="close" size="36rpx" />
+		</view>
+		<view class="popup-sku-header">
+			<image class="popup-sku-header__img" src="{{src}}" mode="scaleToFill" />
+			<view class="popup-sku-header__goods-info">
+				<view class="popup-sku__goods-name">{{title}}</view>
+				<view class="goods-price-container">
+					<slot name="goods-price" />
+				</view>
+				<!-- 已选规格 -->
+				<view class="popup-sku__selected-spec">
+					<view>选择：</view>
+					<view wx:for="{{specList}}" wx:key="specId">
+						<view class="popup-sku__selected-item" wx:for="{{item.label}}" wx:for-item="selectedItem"
+							wx:if="{{selectedItem.isChoosed}}" wx:key="specValueId">
+							{{selectedItem.value}}
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="popup-sku-body">
+			<view class="popup-sku-group-container">
+				<view class="popup-sku-row" wx:for="{{specList}}" wx:key="id">
+					<view class="popup-sku-row__title">{{item.value}}</view>
+					<block wx:for="{{item.label}}" wx:for-item="valuesItem" wx:for-index="valuesIndex" wx:key="id">
+						<!-- <view
+							class="popup-sku-row__item {{valuesItem.isChoosed ? 'popup-sku-row__item--active' : ''}} {{  !isStock ? 'disabled-sku-selected' : ''}}"
+							data-specid="{{item.id}}" data-id="{{valuesItem.id}}" data-val="{{valuesItem.value}}"
+							data-hasStock="{{ true }}" bindtap="toChooseItem">
+							{{valuesItem.value}}
+						</view> -->
+						<view class="popup-sku-row__item {{valuesItem.isChoosed ? 'popup-sku-row__item--active' : ''}}"
+							data-specid="{{item.id}}" data-id="{{valuesItem.id}}" data-val="{{valuesItem.value}}"
+							data-hasStock="{{ true }}" bindtap="toChooseItem">
+							{{valuesItem.value}}
+						</view>
+					</block>
+				</view>
+			</view>
+			<view class="popup-sku-stepper-stock">
+				<view class="popup-sku-stepper-container">
+					<view class="popup-sku__stepper-title">
+						购买数量
+						<view class="limit-text" wx:if="{{limitBuyInfo}}">
+							({{limitBuyInfo}})
+						</view>
+					</view>
+					<view class="popup-stepper popup-sku__stepper">
+						<view class="input-btn popup-stepper__minus" bindtap="handleBuyNumMinus">
+							<t-icon name="remove" size="24rpx" />
+						</view>
+						<view class="input-num-wrap">
+							<input class="input-num" type="number" focus="{{ false }}" value="{{buyNum}}"
+								bindblur="handleBuyNumChange" />
+						</view>
+						<view class="input-btn popup-stepper__plus" bindtap="handleBuyNumPlus">
+							<t-icon name="add" size="24rpx" />
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view wx:if="{{ isStock }}" class="single-confirm-btn" bindtap="specsConfirm">
+			{{outOperateStatus?'立即购买':'加入购物车'}}
+		</view>
+		<view wx:if="{{ !isStock }}" class="single-confirm-btn disabled">
+			暂时缺货
+		</view>
+		<!-- <view class="popup-sku-actions flex flex-between {{!isStock ? 'popup-sku-disabled' : ''}}">
+			<view class="sku-operate">
+				<view class="selected-sku-btn sku-operate-addCart {{!isStock ? 'disabled' : ''}}" bindtap="addCart">
+					加入购物车
+				</view>
+			</view>
+			<view class="sku-operate">
+				<view class="selected-sku-btn sku-operate-buyNow  {{!isStock ? 'disabled' : ''}}" bindtap="buyNow">
+					{{ !isStock?'暂时缺货':'立即购买' }}
+				</view>
+			</view>
+		</view> -->
+		<slot name="bottomSlot" />
+	</view>
+</t-popup>
+<t-toast id="t-toast" />
