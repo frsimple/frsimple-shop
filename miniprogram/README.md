@@ -3,7 +3,7 @@
 项目目录结构如下：
 
 ```
-|-- tdesign-miniprogram-starter
+|--miniprogram 
     |-- README.md
     |-- app.js
     |-- app.json
