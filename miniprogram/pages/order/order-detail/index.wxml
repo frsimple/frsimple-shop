@@ -44,9 +44,9 @@
 				<view>{{order.takeInfo.rname + ' '}}{{order.takeInfo.rphone}}</view>
 				<view class="logistics-time">{{_order.receiverAddress}}</view>
 			</view>
-			<view wx:if="{{addressEditable}}" class="edit-text" bindtap="onEditAddressTap">
+			<!-- <view wx:if="{{addressEditable}}" class="edit-text" bindtap="onEditAddressTap">
 				修改
-			</view>
+			</view> -->
 		</view>
 	</view>
 	<!-- 店铺及商品 -->

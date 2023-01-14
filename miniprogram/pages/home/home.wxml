@@ -32,7 +32,7 @@
 		<view wx:if="{{ !!fastList  }}" class="home-page-grid">
 			<t-grid class="block" column="{{4}}">
 				<t-grid-item wx:for="{{fastList }}" wx:key="index" text="{{ item.title }}" image="{{item.img}}"
-					bind:tap="clickGrid" data-type="{{ item.type}}" data-url="{{ item.url }}" />
+					bind:tap="clickGrid" data-type="{{ item.type}}" data-url="{{ item.url }}" t-class-text="gridtext" />
 			</t-grid>
 		</view>
 		<view class="home-page-new">

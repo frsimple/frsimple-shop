@@ -136,6 +136,10 @@ page {
   margin-bottom: 32rpx;
 }
 
+.home-page-grid .gridtext {
+  color: #333;
+}
+
 .home-page-grid .block {
   display: block;
 }

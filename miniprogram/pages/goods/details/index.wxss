@@ -339,3 +339,16 @@ page {
   font-size: 28rpx;
   font-weight: 400;
 }
+
+.mdl-xq {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+}
+
+.fwb-img {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  display: block
+}

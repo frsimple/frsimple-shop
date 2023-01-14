@@ -79,7 +79,7 @@ Page({
     });
   },
   onchange(e) {
-    console.log(this.data.areaVal);
+    console.log(e.detail);
     if (e.detail.selectedOptions) {
       let selects = e.detail.selectedOptions;
       if (selects[0]) {
@@ -100,6 +100,11 @@ Page({
           'locationState.districtName': selects[2].name,
         });
       }
+      const { isLegal, tips } = this.onVerifyInputLegal();
+      this.setData({
+        submitActive: isLegal,
+      });
+      this.privateData.verifyTips = tips;
     }
   },
   getAddressDetail(id) {
@@ -393,6 +398,7 @@ Page({
       })
         .then((res) => {
           if (res.code == 0) {
+            wx.setStorageSync('list-reload', '1');
             wx.navigateBack({ delta: 1 });
           } else {
             Toast({
@@ -432,6 +438,7 @@ Page({
       })
         .then((res) => {
           if (res.code == 0) {
+            wx.setStorageSync('list-reload', '1');
             wx.navigateBack({ delta: 1 });
           } else {
             Toast({

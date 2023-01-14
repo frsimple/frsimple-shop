@@ -87,7 +87,7 @@
 			<t-image t-class="img" src="{{recRightImg}}" />
 		</view>
 		<view>
-			<rich-text nodes="{{ details.content }}" />
+			<rich-text nodes="{{ details.content }}" space="ensp" />
 		</view>
 	</view>
 	<view class="goods-bottom-operation">

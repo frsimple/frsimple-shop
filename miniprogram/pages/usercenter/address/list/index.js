@@ -26,6 +26,15 @@ Page({
   /** 是否已经选择地址，不置为true的话页面离开时会触发取消选择行为 */
   hasSelect: false,
 
+  onShow() {
+    if (
+      wx.getStorageSync('list-reload') &&
+      wx.getStorageSync('list-reload') == '1'
+    ) {
+      this.init();
+      wx.removeStorageSync('list-reload');
+    }
+  },
   onLoad(query) {
     const { selectMode = '', isOrderSure = '', id = '' } = query;
     this.setData({

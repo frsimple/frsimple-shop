@@ -35,56 +35,6 @@ Page({
     this.setData({
       loading: false,
     });
-    // this.getCartGroupData().then((res) => {
-    //   let isEmpty = true;
-    //   const cartGroupData = res.data;
-    //   // 一些组件中需要的字段可能接口并没有返回，或者返回的数据结构与预期不一致，需要在此先对数据做一些处理
-    //   // 统计门店下加购的商品是否全选、是否存在缺货/无货
-    //   for (const store of cartGroupData.storeGoods) {
-    //     store.isSelected = true; // 该门店已加购商品是否全选
-    //     store.storeStockShortage = false; // 该门店已加购商品是否存在库存不足
-    //     if (!store.shortageGoodsList) {
-    //       store.shortageGoodsList = []; // 该门店已加购商品如果库存为0需单独分组
-    //     }
-    //     for (const activity of store.promotionGoodsList) {
-    //       activity.goodsPromotionList = activity.goodsPromotionList.filter(
-    //         (goods) => {
-    //           goods.originPrice = undefined;
-
-    //           // 统计是否有加购数大于库存数的商品
-    //           if (goods.quantity > goods.stockQuantity) {
-    //             store.storeStockShortage = true;
-    //           }
-    //           // 统计是否全选
-    //           if (!goods.isSelected) {
-    //             store.isSelected = false;
-    //           }
-    //           // 库存为0（无货）的商品单独分组
-    //           if (goods.stockQuantity > 0) {
-    //             return true;
-    //           }
-    //           store.shortageGoodsList.push(goods);
-    //           return false;
-    //         },
-    //       );
-
-    //       if (activity.goodsPromotionList.length > 0) {
-    //         isEmpty = false;
-    //       }
-    //     }
-    //     if (store.shortageGoodsList.length > 0) {
-    //       isEmpty = false;
-    //     }
-    //   }
-    //   cartGroupData.invalidGoodItems = cartGroupData.invalidGoodItems.map(
-    //     (goods) => {
-    //       goods.originPrice = undefined;
-    //       return goods;
-    //     },
-    //   );
-    //   cartGroupData.isNotEmpty = !isEmpty;
-    //   this.setData({ cartGroupData });
-    // });
   },
 
   findGoods(spuId, skuId) {
@@ -114,15 +64,6 @@ Page({
       currentGoods,
     };
   },
-
-  // 注：实际场景时应该调用接口获取购物车数据
-  // getCartGroupData() {
-  //   const { cartGroupData } = this.data;
-  //   if (!cartGroupData) {
-  //     return fetchCartGroupData();
-  //   }
-  //   return Promise.resolve({ data: cartGroupData });
-  // },
 
   // 选择单个商品
   // 注：实际场景时应该调用接口更改选中状态
@@ -240,31 +181,7 @@ Page({
       isAllSelected: isSelectAll,
       cartGroupData: cartGroupData,
     });
-    // const { currentGoods } = this.findGoods(spuId, skuId);
-    // Toast({
-    //   context: this,
-    //   selector: '#t-toast',
-    //   message: `${isSelected ? '选择' : '取消'}"${
-    //     currentGoods.title.length > 5
-    //       ? `${currentGoods.title.slice(0, 5)}...`
-    //       : currentGoods.title
-    //   }"`,
-    //   icon: '',
-    // });
-    // this.selectGoodsService({ spuId, skuId, isSelected }).then(() =>
-    //   this.refreshData(),
-    // );
   },
-
-  // onStoreSelect(e) {
-  //   const {
-  //     store: { storeId },
-  //     isSelected,
-  //   } = e.detail;
-  //   this.selectStoreService({ storeId, isSelected }).then(() =>
-  //     this.refreshData(),
-  //   );
-  // },
 
   onQuantityChange(e) {
     const { goods, buyNum } = e.detail;
@@ -306,25 +223,12 @@ Page({
     });
   },
 
-  // goCollect() {
-  //   /** 活动肯定有一个活动ID，用来获取活动banner，活动商品列表等 */
-  //   const promotionID = '123';
-  //   wx.navigateTo({
-  //     url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
-  //   });
-  // },
-
   goGoodsDetail(e) {
     const { spuId, skuId } = e.detail.goods;
     wx.navigateTo({
       url: `/pages/goods/details/index?spuId=${spuId}&skuId=${skuId}`,
     });
   },
-
-  // clearInvalidGoods() {
-  //   // 实际场景时应该调用接口清空失效商品
-  //   this.clearInvalidGoodsService().then(() => this.refreshData());
-  // },
 
   onGoodsDelete(e) {
     const { goods } = e.detail;
