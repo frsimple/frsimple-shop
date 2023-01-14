@@ -11,7 +11,7 @@
  Target Server Version : 80031 (8.0.31)
  File Encoding         : 65001
 
- Date: 14/01/2023 13:22:45
+ Date: 14/01/2023 13:50:52
 */
 
 SET NAMES utf8mb4;
@@ -293,8 +293,6 @@ CREATE TABLE `shop_order`  (
 -- ----------------------------
 -- Records of shop_order
 -- ----------------------------
-INSERT INTO `shop_order` VALUES ('ORDER1673672403192684', 'WX2023RY4YR1E2', '2023-01-14 13:00:03', '00', 'wx', NULL, '100', NULL, '202301141300031958bh7t', '1', NULL, '{\"id\": \"1614124675597438977\", \"tab\": \"0\", \"rarea\": {\"cityCode\": \"310100\", \"cityName\": \"上海市\", \"districtCode\": \"310115\", \"districtName\": \"浦东新区\", \"provinceCode\": \"310000\", \"provinceName\": \"上海\"}, \"rname\": \"周鹏羽\", \"rphone\": \"187****1111\", \"userid\": \"WX2023RY4YR1E2\", \"raddress\": \"华高一村6号602\", \"isDefault\": \"1\", \"rphonedec\": \"18721111111\"}', '[{\"id\": \"16736724031887B6B2\", \"price\": 99, \"skuId\": \"38b9b1f44e68\", \"spuId\": \"PROD202301140STLV0\", \"buyNum\": 1, \"weight\": 0, \"goodsName\": \"腾讯极光盒子4智能网络电视机顶盒6K千兆网络机顶盒4K高分辨率\", \"rateTemInfo\": {\"id\": \"1614065240787226626\", \"name\": \"按重量计费\", \"type\": \"01\", \"nosend\": {\"label\": \"\", \"value\": \"\"}, \"conjson\": [{\"param0\": [\"310000\"], \"param1\": 10, \"param2\": 5}], \"payjson\": [{\"param0\": \"default\", \"param1\": 1, \"param2\": 1, \"param3\": 1, \"param4\": 2}, {\"param0\": [\"110000\"], \"param1\": 1, \"param2\": 2, \"param3\": 1, \"param4\": 3}], \"paytype\": \"az\", \"sendtime\": \"24\", \"tenantid\": \"1\", \"sendregion\": \"310000,310100,310101\"}, \"primaryImage\": \"https://pengpengyu-test.oss-cn-zhangjiakou.aliyuncs.com/public/2023-01-14/1/dz-3b.png\", \"selectedSkuInfo\": {\"id\": \"38b9b1f44e68\", \"rule\": \"贵族青/节能套装\", \"price\": 99, \"nprice\": 169, \"status\": \"01\", \"weight\": 0, \"inventory\": 999}}]', 'wx', '0', NULL, NULL, NULL, '', NULL, NULL);
-INSERT INTO `shop_order` VALUES ('ORDER1673672652244027', 'WX2023RY4YR1E2', '2023-01-14 13:04:12', '00', 'wx', NULL, '205', NULL, '20230114130412245n0xd1', '6', NULL, '{\"id\": \"1614124675597438977\", \"tab\": \"0\", \"rarea\": {\"cityCode\": \"310100\", \"cityName\": \"上海市\", \"districtCode\": \"310115\", \"districtName\": \"浦东新区\", \"provinceCode\": \"310000\", \"provinceName\": \"上海\"}, \"rname\": \"周鹏羽\", \"rphone\": \"187****1111\", \"userid\": \"WX2023RY4YR1E2\", \"raddress\": \"华高一村6号602\", \"isDefault\": \"1\", \"rphonedec\": \"18721111111\"}', '[{\"id\": \"1673672652238YDATN\", \"price\": 199, \"skuId\": \"1c17ff8bbb553\", \"spuId\": \"PROD202301147OKS7R\", \"buyNum\": 1, \"weight\": 4, \"goodsName\": \"不锈钢刀叉勺套装家用西餐餐具ins简约耐用不锈钢金色银色可选\", \"rateTemInfo\": {\"id\": \"1614065240787226626\", \"name\": \"按重量计费\", \"type\": \"01\", \"nosend\": {\"label\": \"\", \"value\": \"\"}, \"conjson\": [{\"param0\": [\"310000\"], \"param1\": 10, \"param2\": 5}], \"payjson\": [{\"param0\": \"default\", \"param1\": 1, \"param2\": 1, \"param3\": 1, \"param4\": 2}, {\"param0\": [\"110000\"], \"param1\": 1, \"param2\": 2, \"param3\": 1, \"param4\": 3}], \"paytype\": \"az\", \"sendtime\": \"24\", \"tenantid\": \"1\", \"sendregion\": \"310000,310100,310101\"}, \"primaryImage\": \"https://pengpengyu-test.oss-cn-zhangjiakou.aliyuncs.com/public/2023-01-14/1/gh-2b (1).png\", \"selectedSkuInfo\": {\"id\": \"1c17ff8bbb553\", \"rule\": \"奶黄色/六件套\", \"price\": 199, \"nprice\": 299, \"status\": \"01\", \"weight\": 4, \"inventory\": 999}}]', 'wx', '0', NULL, NULL, NULL, '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for shop_order_details
@@ -312,8 +310,6 @@ CREATE TABLE `shop_order_details`  (
 -- ----------------------------
 -- Records of shop_order_details
 -- ----------------------------
-INSERT INTO `shop_order_details` VALUES ('1614125169808084994', 'ORDER1673672403192684', '生成订单', '2023-01-14 13:00:04', '00');
-INSERT INTO `shop_order_details` VALUES ('1614126213241868289', 'ORDER1673672652244027', '生成订单', '2023-01-14 13:04:13', '00');
 
 -- ----------------------------
 -- Table structure for shop_ratetem
