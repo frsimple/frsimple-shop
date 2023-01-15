@@ -26,6 +26,8 @@
 
 [商城后台](https://shop.frsimple.cn)
 
+小程序体验版本
+![小程序体验版本](https://pengpengyu-test.oss-cn-zhangjiakou.aliyuncs.com/image/gh_3e61169bf354_258.jpg)
 
 #### 软件架构
 
