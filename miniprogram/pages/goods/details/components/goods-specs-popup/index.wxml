@@ -54,7 +54,7 @@
 							<t-icon name="remove" size="24rpx" />
 						</view>
 						<view class="input-num-wrap">
-							<input class="input-num" type="number" focus="{{ false }}" value="{{buyNum}}"
+							<input class="input-num" type="number" disabled="{{ !show }}" value="{{ buyNum }}"
 								bindblur="handleBuyNumChange" />
 						</view>
 						<view class="input-btn popup-stepper__plus" bindtap="handleBuyNumPlus">

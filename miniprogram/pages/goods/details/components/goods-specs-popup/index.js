@@ -68,11 +68,11 @@ Component({
     count: {
       type: Number,
       value: 1,
-      observer(count) {
-        this.setData({
-          buyNum: count,
-        });
-      },
+      // observer(count) {
+      //   this.setData({
+      //     buyNum: count,
+      //   });
+      // },
     },
   },
 
@@ -89,21 +89,6 @@ Component({
     initData() {
       const { skuList } = this.properties;
       const { specList } = this.properties;
-      // specList.forEach((item) => {
-      //   if (item.label.length > 0) {
-      //     item.label.forEach((subItem) => {
-      //       const obj = this.checkSkuStockQuantity(subItem.id, skuList);
-      //       subItem.hasStockObj = obj;
-      //     });
-      //   }
-      // });
-      // const selectedSku = {};
-      // specList.forEach((item) => {
-      //   selectedSku[item.specId] = '';
-      // });
-      // this.setData({
-      //   specList,
-      // });
       this.selectSpecObj = {};
       this.selectedSku = {};
       this.initStatus = true;

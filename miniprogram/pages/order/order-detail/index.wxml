@@ -102,8 +102,8 @@
 		<view class="pay-item">
 			<text>订单编号</text>
 			<view class="pay-item__right" bindtap="onOrderNumCopy">
-				<text class="order-no">{{order.orderNo}}</text>
-				<view class="pay-item__right__copy">复制</view>
+				<text class="order-no">{{order.id}}</text>
+				<!-- <view class="pay-item__right__copy">复制</view> -->
 			</view>
 		</view>
 		<view class="pay-item">

@@ -33,6 +33,10 @@ Page({
       });
     }
     this.setData({
+      totalAmount: 0,
+      selectedGoodsCount: 0,
+    });
+    this.setData({
       loading: false,
     });
   },
@@ -290,20 +294,6 @@ Page({
   },
 
   onToSettle() {
-    // const goodsRequestList = [];
-    // this.data.cartGroupData.storeGoods.forEach((store) => {
-    //   store.promotionGoodsList.forEach((promotion) => {
-    //     promotion.goodsPromotionList.forEach((m) => {
-    //       if (m.isSelected == 1) {
-    //         goodsRequestList.push(m);
-    //       }
-    //     });
-    //   });
-    // });
-    // wx.setStorageSync(
-    //   'order.goodsRequestList',
-    //   JSON.stringify(goodsRequestList),
-    // );
     const goodsRequestList = [];
     let { cartGroupData } = this.data;
     cartGroupData.forEach((item) => {

@@ -375,7 +375,7 @@ Page({
       return;
     }
     const { locationState, labels } = this.data;
-
+    console.log(labels, locationState);
     this.hasSava = true;
 
     if (locationState.id) {
@@ -394,7 +394,9 @@ Page({
         },
         raddress: locationState.detailAddress,
         isDefault: locationState.isDefault ? 1 : 0,
-        tab: labels[locationState.labelIndex].id,
+        tab: locationState.labelIndex
+          ? labels[locationState.labelIndex].id
+          : '',
       })
         .then((res) => {
           if (res.code == 0) {
@@ -434,7 +436,9 @@ Page({
         },
         raddress: locationState.detailAddress,
         isDefault: locationState.isDefault ? 1 : 0,
-        tab: labels[locationState.labelIndex].id,
+        tab: locationState.labelIndex
+          ? labels[locationState.labelIndex].id
+          : '',
       })
         .then((res) => {
           if (res.code == 0) {
