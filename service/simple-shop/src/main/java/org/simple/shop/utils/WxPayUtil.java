@@ -129,6 +129,7 @@ public class WxPayUtil {
         WxPayService wxPayService = new WxPayServiceImpl();
         wxPayService.setConfig(wxPayConfig);
         WxPayRefundV3Request request = new WxPayRefundV3Request();
+        request.setNotifyUrl(org.simple.shop.config.WxPayConfig.REF_NOTIFY_URL);
         request.setOutTradeNo(wxPayParams.getOrderId());
         request.setOutRefundNo(wxPayParams.getOutRefundNo());
         WxPayRefundV3Request.Amount amount = new WxPayRefundV3Request.Amount();
@@ -137,6 +138,7 @@ public class WxPayUtil {
         amount.setTotal(Integer.valueOf(
                 wxPayParams.getPayMoney().multiply(new BigDecimal(100)).intValue()
         ));
+        request.setAmount(amount);
         try {
             WxPayRefundV3Result result =
                     wxPayService.refundV3(request);

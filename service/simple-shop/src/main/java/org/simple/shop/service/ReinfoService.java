@@ -11,4 +11,5 @@ import org.simple.shop.entity.Reinfo;
  */
 public interface ReinfoService extends IService<Reinfo> {
 
+    void updateIsDefault();
 }

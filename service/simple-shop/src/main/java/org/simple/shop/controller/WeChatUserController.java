@@ -162,6 +162,9 @@ public class WeChatUserController {
         if(reinfoService.list().size() >= 20){
              return CommonResult.failed("最多添加20个地址");
         }
+        if(StringUtils.isNotEmpty(reinfo.getIsDefault())&&reinfo.getIsDefault().equals("1")){
+            reinfoService.updateIsDefault();
+        }
         reinfo.setUserid(AuthUtils.getUser().getId());
         return CommonResult.success(reinfoService.save(reinfo));
     }
@@ -172,7 +175,10 @@ public class WeChatUserController {
     @PostMapping("editRevAddress")
     @PreAuthorize("hasAnyAuthority('wechat:user')")
     public CommonResult editRevAddress(@RequestBody Reinfo reinfo) {
-        reinfo.setUserid(null);
+        reinfo.setUserid(AuthUtils.getUser().getId());
+        if(StringUtils.isNotEmpty(reinfo.getIsDefault())&&reinfo.getIsDefault().equals("1")){
+            reinfoService.updateIsDefault();
+        }
         return CommonResult.success(reinfoService.updateById(reinfo));
     }
 

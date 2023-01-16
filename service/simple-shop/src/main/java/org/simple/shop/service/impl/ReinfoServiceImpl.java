@@ -1,5 +1,6 @@
 package org.simple.shop.service.impl;
 
+import org.simple.security.utils.AuthUtils;
 import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 
@@ -19,4 +20,9 @@ public class ReinfoServiceImpl
         extends ServiceImpl<ReinfoMapper, Reinfo>
         implements ReinfoService {
 
+
+    @Override
+    public void updateIsDefault() {
+        baseMapper.updateIsDefault(AuthUtils.getUser().getId());
+    }
 }

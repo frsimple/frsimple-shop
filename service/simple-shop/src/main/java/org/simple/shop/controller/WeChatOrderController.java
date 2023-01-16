@@ -464,7 +464,7 @@ public class WeChatOrderController {
         if (refResult.getCode() == 0) {
             WxPayRefundV3Result wxResult =
                     (WxPayRefundV3Result) refResult.getData();
-            if (wxResult.getStatus().equals("SUCCESS")) {
+            if (!wxResult.getStatus().equals("ABNORMAL")) {
                 JSONObject refObj = new JSONObject();
                 refObj.put("refNo", refNo);
                 refObj.put("isReceived", "0");
@@ -483,7 +483,9 @@ public class WeChatOrderController {
             JSONObject good = goods.getJSONObject(i);
             good.put("refNo", refNo);
             good.put("isReceived", "0");
-            good.put("refPrice", good.getBigDecimal("price"));
+            good.put("refPrice", new BigDecimal(
+                    StringUtils.isNotEmpty(shopOrder.getNprice()) ? shopOrder.getNprice() :
+                            shopOrder.getPrice()));
             goods.set(i, good);
         }
         shopOrder.setGoods(goods);

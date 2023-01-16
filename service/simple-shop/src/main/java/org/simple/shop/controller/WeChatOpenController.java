@@ -113,6 +113,7 @@ public class WeChatOpenController {
 
     @PostMapping("/api/refjsapi")
     public ResponseEntity returnTransRefJsApi(@RequestBody String body, HttpServletRequest request) throws WxPayException {
+        log.info(body);
         WxPayRefundNotifyV3Result result =
                 WxPayUtil.getInstance().parseJsApiRefReturnBody(body, getRequestHeader(request));
         //退款到账通知

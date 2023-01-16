@@ -1,6 +1,8 @@
 package org.simple.shop.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.simple.shop.entity.Reinfo;
 
 /**
@@ -13,4 +15,6 @@ import org.simple.shop.entity.Reinfo;
 public interface ReinfoMapper
         extends BaseMapper<Reinfo> {
 
+    @Update("update shop_reinfo set is_default = '0' where userid = #{userid}")
+    void updateIsDefault(@Param("userid")String userid);
 }

@@ -130,7 +130,7 @@ public class AftersalesController {
             if (refResult.getCode() == 0) {
                 WxPayRefundV3Result wxResult =
                         (WxPayRefundV3Result) refResult.getData();
-                if (wxResult.getStatus().equals("SUCCESS")) {
+                if (wxResult.getStatus().equals("ABNORMAL")) {
                     JSONObject refObj = new JSONObject();
                     refObj.put("refNo", refNo);
                     refObj.put("isReceived", "0");
