@@ -1,4 +1,13 @@
-##### [企业级中后台解决方案 pro版本演示地址](https://pro.frsimple.cn)
+#### [uniapp版本在线B2C商城小程序](https://frsimple.cn/blogs/other/money.html)
+
+#### 演示地址
+
+[商城后台：https://shop.frsimple.cn](https://shop.frsimple.cn)
+<div style="width:120px;text-align:center;" >小程序体验版本</div>
+
+![小程序体验版本](https://pengpengyu-test.oss-cn-zhangjiakou.aliyuncs.com/image/gh_3e61169bf354_258.jpg)
+
+#### [企业级中后台解决方案 pro版本演示地址](https://pro.frsimple.cn)
 
 #### [SpringBoot  单体服务中后台解决方案传送门](https://gitee.com/frsimple/springboot)
 
@@ -8,15 +17,6 @@
 
 [官网地址](http://frsimple.cn)
 
-
- **群共享文件中提供初始化脚本和docker生产部署方案** 
-
-#### 演示地址
-
-[商城后台：https://shop.frsimple.cn](https://shop.frsimple.cn)
-<div style="width:120px;text-align:center;" >小程序体验版本</div>
-
-![小程序体验版本](https://pengpengyu-test.oss-cn-zhangjiakou.aliyuncs.com/image/gh_3e61169bf354_258.jpg)
 
 #### 软件架构
 
