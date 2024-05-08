@@ -39,7 +39,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
       vueJsx(),
       viteMockServe({
         mockPath: 'mock',
-        localEnabled: false,
+        enable: false,
       }),
       svgLoader(),
       compressPlugin({
